@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+
+<div style="padding:10px"></div>
+<div class="defont" style="font-size:150%;text-align:center">Welcome to Community Center Renting System</div>
+<div style="padding:30px">
+    <div style="border: 1px solid white"></div>
+</div>
+<div class="pt-2 text-center">
+    <form method="GET" action="/search">
+        <input type="text" class="itext defont s120 text-center my-2" placeholder="Dhaka" style="opacity: 0.6;" disabled/>
+        <br>
+        <select class="form-select-lg itext defont s120 my-2" aria-label=".form-select-lg example" name="area">
+            <option selected>Select Area</option>
+            {% for area in areas %}
+                <option value="{{area}}">{{area}}</option>
+            {% endfor %}
+        </select>
+        <select class="form-select-lg itext defont s120 my-2" aria-label=".form-select-lg example" name="halltype">
+            <option selected>Hall type</option>
+            <option value="Small">Small</option>
+            <option value="Convenient">Convenient</option>
+            <option value="Big">Big</option>
+        </select>
+        <br>
+        <input type="submit" class="btn btn-dark mt-3 px-4 py-2" value="Search"/>
+    </form>
+
+
+    {% if  user.is_authenticated %}
+    {% if totbooks > 0 %}
+    {% for book in books %}
+<div class="defont mt-4 mb-3" style="font-size:150%;text-align:center">Your Bookings:</div>
+
+    <div class="itext">
+        {{book.center}} on {{book.date}}
+    </div>
+    {% endfor %}
+    {% else %}
+    {% endif %}
+    {% else %}
+    {% endif %}
+</div>
+
+{% endblock body %}

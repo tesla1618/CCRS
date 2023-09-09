@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<div style="padding:30px">
+
+</div>
+<div class="pt-2 text-center">
+    <form method="GET" action="/search">
+        <input type="text" class="itext defont s120 text-center my-2" placeholder="Dhaka" style="opacity: 0.6;" disabled/>
+        <br>
+        <select class="form-select-lg itext defont s120 my-2" aria-label=".form-select-lg example" name="area">
+            <option value="{{area}}" selected>{{area}}</option>
+            {% for area in areas %}
+                <option value="{{area}}">{{area}}</option>
+            {% endfor %}
+        </select>
+        <select class="form-select-lg itext defont s120 my-2" aria-label=".form-select-lg example" name="halltype">
+            <option value="{{halltype}}" selected>{{halltype}}</option>
+            <option value="Small">Small</option>
+            <option value="Convenient">Convenient</option>
+            <option value="Big">Big</option>
+        </select>
+        <br>
+        <input type="submit" class="btn btn-dark mt-3 px-4 py-2" value="Search"/>
+    </form>
+</div>
+
+{% if tot > 0 %}
+<div class="defont mt-3 mb-3" style="font-size:150%;text-align:center">Search Results</div>
+<div class="itext" style="overflow-x:auto">
+    
+    <table width="160%" class="mt-2 mb-2 mx-1" style="margin-left: 12px !important;">
+        <tr style="padding-bottom:10px">
+            <td width="6%" class="thumb">
+           
+            </td>
+            <th width="12%">
+                <font class="nextup-title">Name</font>
+            </th>
+            <th width="9%">
+                <font class="nextup-title">Area</font>
+            </th>
+            
+            <th width="10%" class="text-center">
+                <font class="nextup-title">Hall Type</font>
+            </th>
+            <th width="10%" class="text-center">
+                <font class="nextup-title">Rent(BDT)</font>
+            </th>
+            <th width="15%" class="text-center">
+                <font class="nextup-title">Available</font>
+            </th>
+        </tr>
+        {% for center in centers %}
+        <tr class="" style="padding-top:5px !important;padding-bottom:5px;!important">      
+        <td width="6%" class="thumb mr-2">
+                  <img src="{{ center.picture.url }}" width="45" height="45" class="object-fit-cover"/>
+              </td>
+              <td width="19%">
+                  <a class="text-white" href="{% url 'getCenter' center.slug %}">{{ center.cname }}</a>
+              </td>
+              <td width="9%">
+                  {{center.area}}
+              </td>
+              
+              <td width="7%" class="text-center">
+                  {{ center.halltype }}
+              </td>
+              <td width="10%" class="text-center">
+                  {{center.rent}}
+              </td>
+              <td width="15%" class="text-center">
+                  {% if center.isAvailable %}
+                  <i class="bi bi-check-circle mr-3"></i><i style="margin-left:5px"></i><a class="bg bg-success text-white rounded px-2 py-1"> Book </a>
+                  {% else %}
+                  <i class="bi bi-x-circle"></i>
+                  {% endif %}
+              </td>
+            </tr>
+          </table>
+
+
+
+</div>
+{% endfor %}
+{% else %}
+    <div class="alert alert-danger mx-5 my-2 text-center mt-5">
+        No result found
+    </div>
+{% endif %}
+
+{% endblock body %}

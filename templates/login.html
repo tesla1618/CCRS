@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<div class="pt-5 defont s140 text-center">
+    Existing User Login
+</div>
+
+<div class="pt-3 text-center">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="uname" class="itext defont s120 text-center my-2" placeholder="Username"/>
+        <input type="password" name="passwd" class="itext defont s120 text-center my-2" placeholder="Password"/>
+        <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div{% if message.tags %} class="alert {{ message.tags }} mx-5 my-2"{% endif %}>{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <input type="submit" class="btn btn-dark mt-3 px-4 py-2" value="Login"/>
+    </form>
+</div>
+
+{% endblock body %}

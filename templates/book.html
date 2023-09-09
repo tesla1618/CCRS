@@ -1,0 +1,124 @@
+{% extends 'base.html' %} {% block body %}
+
+<style>
+  .cards {
+    margin: 1px 5px 1px 5px;
+    {% comment %} text-align: center !important; {% endcomment %}
+  }
+  .team-body {
+    background: #fff;
+    color: #333;
+    margin: 5px 5px 8px 5px;
+    -webkit-ox-shadow: 5px 5px 20px 7px rgba(0, 0, 0, 0.33);
+    -moz-ox-shadow: 5px 5px 20px 7px rgba(0, 0, 0, 0.33);
+    ox-shadow: 5px 5px 20px 7px rgba(0, 0, 0, 0.33);
+    {% comment %} text-align: center; {% endcomment %}
+    display: inline-block;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+  }
+
+  .team-body img {
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 0ps solid transparent !important;
+    {% comment %} text-align: center; {% endcomment %}
+    max-width: 100%;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    max-height: 100%;
+  }
+
+  .team-body .info {
+    padding: 8px 4px 5px 7px !important;
+  }
+
+  .team-body .info1 {
+    padding: 6px 4px 10px 7px !important;
+    border-bottom: 1px solid #f7f7f7;
+  }
+
+  .team-body i {
+    margin: 2px 6px 2px 3px;
+  }
+  @media screen and (min-width: 600px) {
+    .team-body {
+      height: auto;
+      width: 300px;
+    }
+  }</style>
+  <br>
+<div class="cards">
+  <div class="team-body">
+    <img
+      alt="{{center.slug}}"
+      src="{{center.picture.url}}"
+    /><br />
+    <div class="info1">
+      <b class="defont s140" style="padding: 2px; margin-bottom: 0px; margin-top: 4px">{{center.cname}}</b><br>
+      <span style="font-size: small"> <i class="bi bi-geo-alt mr-2"></i> {{center.area}} | Dhaka, Bangladesh</span>
+    </div>
+    
+    <div style="background: #bbb;padding:8px">BOOKING INFORMATION</div>
+    <div class="info">
+        
+        <div class="list-item">
+            <i class="bi bi-bounding-box-circles mr-1"></i> Hall Type <font class="float-end">{{center.halltype}}</font>
+        </div>
+       
+        <div class="list-item">
+            <i class="bi bi-coin mr-1"></i> Rent <font class="float-end">{{center.rent}} BDT</font>
+        </div>
+        
+        <div class="list-item">
+            <i class="bi bi-box-arrow-in-up-right mr-1"></i> Availability <font class="float-end">{% if center.isAvailable %}
+                <i class="bi bi-check-circle mr-3 text-success"></i>
+                {% else %}
+                <i class="bi bi-x-circle"></i>
+                {% endif %}</font>
+        </div>
+
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="list-item p-4">
+            <select class="form-select-md form-control" aria-label=".form-select-lg example" name="eventType">
+                <option value="" selected>Event Type</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Other">Other</option>
+            </select>
+            <br>
+            <input type="text" class="form-control" name="date" placeholder="Date (DD/MM/YYYY)"/>
+            <br>
+            <input type="text" class="form-control" name="trxid" placeholder="TRXID"/>
+        </div>
+
+        <div class="text-center pt-3 mt-3">
+            <input type="Submit" class="btn btn-primary px-3 py-2 text-white text-center" value="Book Now"/>
+        </div>
+    </form>
+    
+    </div>
+<br>
+
+  <style>
+
+
+    .list-item{
+        padding: 6px; border-bottom: 1px dotted #bbb;
+    }
+
+    .list-item-end{
+        padding: 6px;
+    }
+
+
+</style>
+
+  <br />
+
+  {% endblock body %}
+</div>

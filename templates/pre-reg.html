@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+
+</style>
+
+<a href="/signup/individual_signup">
+    <div class="bg m-3 px-4 py-3 text-white" style="background: #79616f">
+        <p class="defont s140 pt-1">
+            <i class="bi bi-person-add mr-3"></i>
+            Register as an Individual user
+        </p>
+        <p class="px-2">I am looking for community centers to book</p>
+    </div>
+</a>
+
+<a href="/signup/center_signup">
+    <div class="bg m-3 px-4 py-3 text-white"  style="background: #6d6875">
+        <p class="defont s140 pt-1">
+            <i class="bi bi-buildings mr-3"></i>
+            Register as an Organization
+        </p>
+        <p class="px-2">I work in a center and I want my center to be listed</p>
+    </div>
+</a>
+
+{% endblock body %}
